@@ -8,6 +8,14 @@ double deposit();
 double withdraw(double balance);
 
 
+/**
+ * @brief The main function of the banking system program.
+ * 
+ * This function allows the user to interact with the banking system by choosing various options such as
+ * showing the balance, depositing money, withdrawing money, or exiting the program.
+ * 
+ * @return int The exit status of the program.
+ */
 int main()
 {
     double balance = 0;
