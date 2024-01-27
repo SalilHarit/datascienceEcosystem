@@ -9,29 +9,49 @@ bool checkTie(char *spaces);
 
 using namespace std;
 
-int main()
-{
-    char spaces[9]={' ',' ',' ',' ',' ', ' ',' ',' ',' '};
+int main() {
+    char spaces[9] = {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '};
     char player = 'x';
     char computer = '0';
-    bool running =true;
+    bool running = true;
 
     drawBoard(spaces);
 
-    while (running)
-    {
-        playerMove(spaces,player);
+    while (running) {
+        playerMove(spaces, player);
         drawBoard(spaces);
-        if(checkWinner(spaces,player,computer)){
+        
+        if (checkWinner(spaces, player, computer)) {
+            cout << "Player wins!" << endl;
+            running = false;
+            break;
+        }
 
-            running=false;
+        if (checkTie(spaces)) {
+            cout << "It's a tie!" << endl;
+            running = false;
+            break;
+        }
+
+        computerMove(spaces, computer);
+        drawBoard(spaces);
+
+        if (checkWinner(spaces, player, computer)) {
+            cout << "Computer wins!" << endl;
+            running = false;
+            break;
+        }
+
+        if (checkTie(spaces)) {
+            cout << "It's a tie!" << endl;
+            running = false;
             break;
         }
     }
-    
 
- return 0;
+    return 0;
 }
+
 
 void drawBoard(char *spaces){
 
@@ -61,7 +81,7 @@ void computerMove(char *spaces,char computer){
     {
         number = rand() % 9;
         if(spaces[number]==' '){
-            spaces[number]==computer;
+            spaces[number]=computer;
             break;
         }
     }
